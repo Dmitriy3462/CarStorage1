@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarStorage.DAL.Repositories
 {
-    public class ProductRepository
+    internal class ProductRepository
     {
-
     }
 }

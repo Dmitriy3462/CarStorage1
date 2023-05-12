@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarStorage.DAL.Repositories
+namespace CarStorage.DAL.Interfaces
 {
-    internal class UserRepository
+    internal interface ICar
     {
     }
 }
