@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarStorage.DAL.Repositories
 {
-    internal class Repos
+    internal class UserRepository
     {
     }
 }
