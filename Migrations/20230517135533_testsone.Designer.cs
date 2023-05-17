@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarStorage.Migrations
 {
     [DbContext(typeof(CarStorageContext))]
-    [Migration("20230511204511_CarStorage")]
-    partial class CarStorage
+    [Migration("20230517135533_testsone")]
+    partial class testsone
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,7 @@ namespace CarStorage.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CarId")
+                    b.Property<int?>("CarId")
                         .HasColumnType("int");
 
                     b.Property<string>("CategoryName")
@@ -68,14 +68,9 @@ namespace CarStorage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CarId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Categorys");
                 });
@@ -90,6 +85,12 @@ namespace CarStorage.Migrations
 
                     b.Property<bool>("Availability")
                         .HasColumnType("bit");
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
@@ -114,6 +115,10 @@ namespace CarStorage.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -157,21 +162,28 @@ namespace CarStorage.Migrations
 
             modelBuilder.Entity("CarStorage.DAL.Models.Category", b =>
                 {
-                    b.HasOne("CarStorage.DAL.Models.Car", "Car")
+                    b.HasOne("CarStorage.DAL.Models.Car", null)
                         .WithMany("Categorys")
+                        .HasForeignKey("CarId");
+                });
+
+            modelBuilder.Entity("CarStorage.DAL.Models.Product", b =>
+                {
+                    b.HasOne("CarStorage.DAL.Models.Car", "Car")
+                        .WithMany()
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CarStorage.DAL.Models.Product", "Product")
-                        .WithMany("Category")
-                        .HasForeignKey("ProductId")
+                    b.HasOne("CarStorage.DAL.Models.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Car");
 
-                    b.Navigation("Product");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("CarStorage.DAL.Models.Car", b =>
@@ -179,9 +191,9 @@ namespace CarStorage.Migrations
                     b.Navigation("Categorys");
                 });
 
-            modelBuilder.Entity("CarStorage.DAL.Models.Product", b =>
+            modelBuilder.Entity("CarStorage.DAL.Models.Category", b =>
                 {
-                    b.Navigation("Category");
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,10 +11,6 @@ namespace CarStorage.DAL.Models
         public int Id { get; set; }
         public string CategoryName { get; set; }
         public string Description { get; set; }
-        public int ProductId { get; set; }
-        public virtual Product Product { get; set; }
-        public int CarId { get; set; }
-        public virtual Car Car { get; set; }    
-
+        public IEnumerable<Product> Products { get; set; }
     }
 }

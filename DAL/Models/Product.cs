@@ -17,6 +17,10 @@ namespace CarStorage.DAL.Models
         public bool Availability { get; set; }
         public string Image { get; set; }
 
-        public IEnumerable<Category> Category { get; set; }
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
+
+        public int CarId { get; set; }  
+        public virtual Car Car { get; set; }
     }
 }
