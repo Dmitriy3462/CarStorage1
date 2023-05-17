@@ -1,5 +1,6 @@
 ﻿using CarStorage.DAL.Interfaces;
 using CarStorage.DAL.Models;
+using CarStorage.DAL.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,15 @@ namespace CarStorage.DAL.Repositories
 {
     public class ProductRepository : Repository<Product>,IProductRepository
     {
-        public ProductRepository(DbContext context) : base(context)
+        public ProductRepository(CarStorageContext context) : base(context)
         {
 
+        }
+
+        public IQueryable<Product> GetByNameCategoryIdNameProduct(int carId, int categoryId, string nameProd)
+        {
+            return _entities.Where(x => x.CarId == carId
+            && x.CategoryId == categoryId && x.Name == nameProd);
         }
     }
 }

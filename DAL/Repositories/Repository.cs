@@ -1,4 +1,5 @@
 ﻿using CarStorage.DAL.Interfaces;
+using CarStorage.DAL.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.X509Certificates;
 
@@ -7,9 +8,9 @@ namespace CarStorage.DAL.Repositories
     public  class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
-        private readonly DbContext _context;
+        private readonly CarStorageContext _context;
         protected readonly DbSet<TEntity> _entities;
-        public Repository(DbContext context)
+        public Repository(CarStorageContext context)
         {
             _context = context;
             _entities = _context.Set<TEntity>();
@@ -38,9 +39,11 @@ namespace CarStorage.DAL.Repositories
             //почитать про этот метод 
         }
 
-        public TEntity GetByID(int id)
+        
+
+        public void Save()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
     }
 }

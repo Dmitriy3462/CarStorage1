@@ -9,6 +9,6 @@ namespace CarStorage.DAL.Interfaces
 {
     public interface ICategoryRepository:IRepository<Category>
     {
-
+        IQueryable<Category> GetByName(string name);
     }
 }

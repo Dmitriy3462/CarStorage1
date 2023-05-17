@@ -11,9 +11,9 @@ namespace CarStorage.DAL.Repositories
 {
     public class UserRepository:Repository<User>,IUserRepository
     {
-        public UserRepository(DbContext context) : base(context)
+        public UserRepository(CarStorageContext context) : base(context)
         {
-
+            
         }
     }
 }

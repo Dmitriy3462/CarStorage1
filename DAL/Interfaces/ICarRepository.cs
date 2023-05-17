@@ -9,6 +9,6 @@ namespace CarStorage.DAL.Interfaces
 {
     public interface ICarRepository:IRepository<Car>
     {
-
+        IQueryable<Car> GetByNameAndYear(string name,DateTime year );      
     }
 }
