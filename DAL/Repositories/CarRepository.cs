@@ -15,5 +15,11 @@ namespace CarStorage.DAL.Repositories
         {
 
         }
+
+        public IQueryable<Car> GetById(int id)
+        {
+            return _entities.Where(x=>x.Id==id);
+
+        }
     }
 }
