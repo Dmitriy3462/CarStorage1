@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace CarStorage.DAL.Interfaces
 {
-    public interface IRepository<TEntity>
-        where TEntity : class
-    {
-        void Create(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
-        IEnumerable<TEntity> GetAll();
+    public interface IRepository<T>
        
+    {
+        void Create(T entity);
+        void Update(T entity);
+        void Delete(T entity);
+        IEnumerable<T> GetAll();
+       
+
     }
 }

@@ -27,7 +27,7 @@ namespace CarStorage.DAL.Repositories
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _entities; ////поинтересоваться у синьера никиты
+            return _entities;
         }
 
         
@@ -36,6 +36,11 @@ namespace CarStorage.DAL.Repositories
         {
             _context.Attach(entity).State = EntityState.Modified;
             //почитать про этот метод 
+        }
+
+        public TEntity GetByID(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

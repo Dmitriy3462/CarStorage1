@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 
 namespace CarStorage.DAL.Repositories
 {
-    public class CategoryRepository : Repository<Category>,ICategoryRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
         public CategoryRepository(DbContext context) : base(context)
         {
 
+        }
+        public IQueryable<Category> GetById(int id)
+        {
+            return _entities.Where(x => x.Id == id);
         }
     }
 }

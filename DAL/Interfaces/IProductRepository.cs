@@ -9,6 +9,6 @@ namespace CarStorage.DAL.Interfaces
 {
     public interface IProductRepository:IRepository<Product>
     {
-        //hello world
+       
     }
 }
