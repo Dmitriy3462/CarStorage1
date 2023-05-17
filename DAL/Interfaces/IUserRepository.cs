@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarStorage.DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarStorage.DAL.Interfaces
 {
-    internal interface IUser
+    public interface IUserRepository:IRepository<User>
     {
     }
 }
