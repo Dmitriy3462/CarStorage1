@@ -1,5 +1,6 @@
 ﻿using CarStorage.DAL.Interfaces;
 using CarStorage.DAL.Models;
+using CarStorage.DAL.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
