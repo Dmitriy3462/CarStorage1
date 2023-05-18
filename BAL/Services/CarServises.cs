@@ -30,6 +30,9 @@ namespace CarStorage.BAL.Services
             carRepository.Save();
         }
 
+        public void Update(Car car)
+        {
 
+        }
     }
 }
