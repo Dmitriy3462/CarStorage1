@@ -10,11 +10,15 @@ using System.Threading.Tasks;
 
 namespace CarStorage.DAL.Repositories
 {
-    public class UserRepository:Repository<User>,IUserRepository
+    public class UserRepository:Repository<User>, IUserRepository
     {
         public UserRepository(CarStorageContext context) : base(context)
         {
-            
+
+        }
+        public IQueryable<User> GetById(int id)
+        {
+            return _entities.Where(x => x.Id == id);
         }
     }
 }

@@ -8,6 +8,7 @@ using CarStorage.DAL.Models.Context;
 using CarStorage.BAL.Helpers;
 using CarStorage.DAL.Interfaces;
 using CarStorage.DAL.Models;
+using System.Runtime.ConstrainedExecution;
 
 namespace CarStorage.BAL.Services
 {
@@ -20,17 +21,17 @@ namespace CarStorage.BAL.Services
         {
             try
             {
-                var category = carRepository.GetById(carId).FirstOrDefault();
+                var category = categoryRepository.GetById(categoryId).FirstOrDefault();
                 if (category == null)
-                    throw new CarException("Car is not found");
+                    throw new CarException("Category is not found");
 
-                carRepository.Delete(category);
-                carRepository.Save();
-                Console.WriteLine("Car has been successfully deleted.");
+                categoryRepository.Delete(category);
+                categoryRepository.Save();
+                Console.WriteLine("Category has been successfully deleted.");
             }
-            catch (CarException ex)
+            catch (CategoryException ex)
             {
-                throw new CarException("Error when removing a category: " + ex.Message);
+                throw new CategoryException("Error when removing a category: " + ex.Message);
             }
         }
         #endregion
@@ -38,20 +39,76 @@ namespace CarStorage.BAL.Services
         #region UpdateCategory
         public void UpdateCategory(Category category)
         {
+
             try
             {
-                if (true)
+                if (category == null)
+                    throw new CategoryException("Category is update");
+                
+                var allCategory = categoryRepository.GetAll();
+                foreach (var item in allCategory)
                 {
-
+                    if (item.CategoryName == category.CategoryName)
+                        throw new CarException("category with those name already exist");
+                    
                 }
+                categoryRepository.Update(category);
+                categoryRepository.Save();
 
             }
-            catch (Exception)
+            catch (CategoryException ex)
             {
-
-                throw;
+                Console.WriteLine("Error update category: " + ex.Message);
             }
         }
+        #endregion
+
+        #region NewCategory
+        public void NewCategory(Category category)
+        {
+            try
+            {
+                if (category.CategoryName == null)
+                    throw new CarException("Missing title of issue");
+
+                var existingCategory = categoryRepository.GetAll().FirstOrDefault(item => item.CategoryName == category.CategoryName);
+
+                if (existingCategory == null)
+                {
+                    categoryRepository.Create(category);
+                    categoryRepository.Save();
+                }
+                else
+                    throw new CategoryException("Such a category already exists");
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine("There was a common mistake: " + ex.Message);
+            }
+
+        }
+        #endregion
+
+        #region FindCategory
+        public Category FindCategory(int categoryId)
+        {
+            try
+            {
+                var categoryById = categoryRepository.GetById(categoryId).FirstOrDefault();
+                if (categoryById == null)
+                    throw new CategoryException("Category not found");
+
+                return categoryById;
+            }
+            catch (CarException ex)
+            {
+                throw new CarException("Error occurred while finding the car: ");
+                return null;
+            }
+        }
+        #endregion
+
 
 
 

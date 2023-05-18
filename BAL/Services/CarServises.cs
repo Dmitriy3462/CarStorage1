@@ -45,7 +45,7 @@ namespace CarStorage.BAL.Services
             {
                 if (car == null)
                 {
-                    throw new CarException("Car is update");
+                    throw new CarException("Car is not update");
                 }
                 var allCar = carRepository.GetAll();
                 foreach (var item in allCar)

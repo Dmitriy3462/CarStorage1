@@ -22,5 +22,9 @@ namespace CarStorage.DAL.Repositories
             return _entities.Where(x => x.CarId == carId
             && x.CategoryId == categoryId && x.Name == nameProd);
         }
+        public IQueryable<Product> GetById(int id)
+        {
+            return _entities.Where(x => x.Id == id);
+        }
     }
 }
