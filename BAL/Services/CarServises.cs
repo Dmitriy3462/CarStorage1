@@ -25,15 +25,15 @@ namespace CarStorage.BAL.Services
             {
                 var car = carRepository.GetById(carId).FirstOrDefault();
                 if (car == null)
-                    throw new CarException("Car is not found");
+                    throw new CarExceptoin("Car is not found");
                  
                 carRepository.Delete(car);
                 carRepository.Save();
                 Console.WriteLine("Car has been successfully deleted.");
             }
-            catch (CarException ex)
+            catch (CarExceptoin ex)
             {
-                throw new CarException("Error when removing a car: " + ex.Message);
+                throw new CarExceptoin("Error when removing a car: " + ex.Message);
             }
         }
         #endregion
@@ -45,21 +45,21 @@ namespace CarStorage.BAL.Services
             {
                 if (car == null)
                 {
-                    throw new CarException("Car is not update");
+                    throw new CarExceptoin("Car is not update");
                 }
                 var allCar = carRepository.GetAll();
                 foreach (var item in allCar)
                 {
                     if (item.CarModel == car.CarModel && item.Year == car.Year)
                     {
-                        throw new CarException("car with those name and year already exist");
+                        throw new CarExceptoin("car with those name and year already exist");
                     }
                 }
                 carRepository.Update(car);
                 carRepository.Save();
 
             }
-            catch (CarException ex)
+            catch (CarExceptoin ex)
             {
                 Console.WriteLine("Error update car: " + ex.Message);
             }
@@ -72,7 +72,7 @@ namespace CarStorage.BAL.Services
             try
             {
                 if (car.CarModel == null || car.Year == null)
-                   throw new CarException ("Missing title or year of issue");                
+                   throw new CarExceptoin ("Missing title or year of issue");                
 
                 var existingCar = carRepository.GetAll().FirstOrDefault(item => item.CarModel == car.CarModel &&
                 item.Year == car.Year);
@@ -83,7 +83,7 @@ namespace CarStorage.BAL.Services
                     carRepository.Save();
                 }
                 else
-                  throw new CarException("Such a machine already exists");                
+                  throw new CarExceptoin("Such a machine already exists");                
             }
 
             catch (Exception ex)
@@ -101,13 +101,13 @@ namespace CarStorage.BAL.Services
             {
                 var byId = carRepository.GetById(carId).FirstOrDefault();
                 if (byId == null)
-                    throw new CarException("Car not found");
+                    throw new CarExceptoin("Car not found");
                 
                 return byId;
             }
-            catch (CarException ex)
+            catch (CarExceptoin ex)
             {
-                throw new CarException("Error occurred while finding the car: ");
+                throw new CarExceptoin("Error occurred while finding the car: ");
                 return null;
             }
         }

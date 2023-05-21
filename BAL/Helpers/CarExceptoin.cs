@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarStorage.BAL.Helpers
 {
-    internal class Class1
+    internal class CarExceptoin
     {
     }
 }
