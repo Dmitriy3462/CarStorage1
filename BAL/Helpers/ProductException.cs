@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CarStorage.BAL.Helpers
 {
-    internal class ProductException
+    public class ProductException : Exception
     {
+        public ProductException (string message)
+     : base(message) { }
     }
 }
