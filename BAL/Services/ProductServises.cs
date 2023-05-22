@@ -12,72 +12,72 @@ namespace CarStorage.BAL.Services
 {
     public class ProductServises
     {
-        CategoryRepository categoryRepository = new CategoryRepository(new CarStorageContext());
+        ProductRepository productRepository = new ProductRepository(new CarStorageContext());
 
-        #region DeleteCategory
-        public void DeleteCategory(int categoryId)
+        #region DeleteProduct
+        public void DeleteProduct(int productId)
         {
             try
             {
-                var category = categoryRepository.GetById(categoryId).FirstOrDefault();
-                if (category == null)
-                    throw new ProductException("Category is not found");
+                var product = productRepository.GetById(productId).FirstOrDefault();
+                if (product == null)
+                    throw new ProductException("product is not found");
 
-                categoryRepository.Delete(category);
-                categoryRepository.Save();
-                Console.WriteLine("Category has been successfully deleted.");
+                productRepository.Delete(product);
+                productRepository.Save();
+                Console.WriteLine("product has been successfully deleted.");
             }
-            catch (CategoryException ex)
+            catch (ProductException ex)
             {
-                throw new CategoryException("Error when removing a category: " + ex.Message);
+                throw new ProductException("Error when removing a product: " + ex.Message);
             }
         }
         #endregion
 
-        #region UpdateCategory
-        public void UpdateCategory(Category category)
+        #region UpdateProduct
+        public void UpdateProduct(Product product)
         {
 
             try
             {
-                if (category == null)
-                    throw new CategoryException("Category is update");
+                if (product == null)
+                    throw new ProductException("product is update");
 
-                var allCategory = categoryRepository.GetAll();
-                foreach (var item in allCategory)
+                var allProduct = productRepository.GetAll();
+                foreach (var item in allProduct)
                 {
-                    if (item.CategoryName == category.CategoryName)
-                        throw new CarException("category with those name already exist");
+                    if (item.Name == product.Name)
+                        throw new ProductException("product with those name already exist");
 
                 }
-                categoryRepository.Update(category);
-                categoryRepository.Save();
+                productRepository.Update(product);
+                productRepository.Save();
 
             }
-            catch (CategoryException ex)
+            catch (ProductException ex)
             {
-                Console.WriteLine("Error update category: " + ex.Message);
+                Console.WriteLine("Error update product: " + ex.Message);
             }
         }
         #endregion
 
-        #region NewCategory
-        public void NewCategory(Category category)
+        #region NewProduct
+        public void NewProduct(Product product)
         {
             try
             {
-                if (category.CategoryName == null)
-                    throw new CarException("Missing title of issue");
+                if (product.Name == null)
+                    throw new ProductException("Missing title of issue");
 
-                var existingCategory = categoryRepository.GetAll().FirstOrDefault(item => item.CategoryName == category.CategoryName);
+                var existingCategory = productRepository.GetAll().FirstOrDefault(item => item.Name == product.Name);
 
                 if (existingCategory == null)
                 {
-                    categoryRepository.Create(category);
-                    categoryRepository.Save();
+                    productRepository.Create(product);
+                    productRepository.Save();
                 }
                 else
-                    throw new CategoryException("Such a category already exists");
+                    throw new ProductException("Such a product already exists");
             }
 
             catch (Exception ex)
@@ -88,25 +88,27 @@ namespace CarStorage.BAL.Services
         }
         #endregion
 
-        #region FindCategory
-        public Category FindCategory(int categoryId)
+        #region FindProduct
+        public Product FindProduct(int productId)
         {
             try
             {
-                var categoryById = categoryRepository.GetById(categoryId).FirstOrDefault();
-                if (categoryById == null)
-                    throw new CategoryException("Category not found");
+                var productById = productRepository.GetById(productId).FirstOrDefault();
+                if (productById == null)
+                    throw new CategoryException("product not found");
 
-                return categoryById;
+                return productById;
             }
-            catch (CarException ex)
+            catch (ProductException ex)
             {
-                throw new CarException("Error occurred while finding the car: ");
-                return null;
+                throw new ProductException("Error occurred while finding the product: ");
+                return null; //????????????
             }
         }
         #endregion
 
 
     }
+
+    //Доделать и проверить соотвествие проверок и анологично сделать для юзера
 }

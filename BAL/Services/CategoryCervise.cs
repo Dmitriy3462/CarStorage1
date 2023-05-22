@@ -23,7 +23,7 @@ namespace CarStorage.BAL.Services
             {
                 var category = categoryRepository.GetById(categoryId).FirstOrDefault();
                 if (category == null)
-                    throw new CarException("Category is not found");
+                    throw new CategoryException("Category is not found");
 
                 categoryRepository.Delete(category);
                 categoryRepository.Save();
@@ -49,7 +49,7 @@ namespace CarStorage.BAL.Services
                 foreach (var item in allCategory)
                 {
                     if (item.CategoryName == category.CategoryName)
-                        throw new CarException("category with those name already exist");
+                        throw new CategoryException("category with those name already exist");
                     
                 }
                 categoryRepository.Update(category);
@@ -69,7 +69,7 @@ namespace CarStorage.BAL.Services
             try
             {
                 if (category.CategoryName == null)
-                    throw new CarException("Missing title of issue");
+                    throw new CategoryException("Missing title of issue");
 
                 var existingCategory = categoryRepository.GetAll().FirstOrDefault(item => item.CategoryName == category.CategoryName);
 
@@ -101,9 +101,9 @@ namespace CarStorage.BAL.Services
 
                 return categoryById;
             }
-            catch (CarException ex)
+            catch (CategoryException ex)
             {
-                throw new CarException("Error occurred while finding the car: ");
+                throw new CategoryException("Error occurred while finding the car: ");
                 return null;
             }
         }

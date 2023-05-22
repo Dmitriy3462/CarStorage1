@@ -112,6 +112,11 @@ namespace CarStorage.BAL.Services
             }
         }
         #endregion
+        public IEnumerable<Car> GetAllCars()
+        {
+            var response = carRepository.GetAll();
+            return response;    
+        }
 
     }
 
