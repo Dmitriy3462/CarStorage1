@@ -9,10 +9,11 @@ using CarStorage.BAL.Helpers;
 using CarStorage.DAL.Interfaces;
 using CarStorage.DAL.Models;
 using System.Runtime.ConstrainedExecution;
+using CarStorage.BAL.Interfaces;
 
 namespace CarStorage.BAL.Services
 {
-    public class CategoryCervise
+    public class CategoryService: ICategoryService
     {
         CategoryRepository categoryRepository = new CategoryRepository(new CarStorageContext());
 

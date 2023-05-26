@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarStorage.BAL.Interfaces;
+using CarStorage.DAL.Interfaces;
 
 namespace CarStorage.BAL.Services
 {
-    public class ProductServises
+    public class ProductServices : IProductService
     {
         ProductRepository productRepository = new ProductRepository(new CarStorageContext());
 
@@ -33,6 +35,8 @@ namespace CarStorage.BAL.Services
             }
         }
         #endregion
+
+
 
         #region UpdateProduct
         public void UpdateProduct(Product product)
@@ -106,6 +110,12 @@ namespace CarStorage.BAL.Services
             }
         }
         #endregion
+
+        public IEnumerable<Product> GetAllProduct()
+        {
+            var response = productRepository.GetAll();
+            return response;
+        }
 
 
     }

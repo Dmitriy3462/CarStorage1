@@ -10,13 +10,13 @@ using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using CarStorage.BAL.Interfaces;
 
 namespace CarStorage.BAL.Services
 {
-    public class CarServises
+    public class CarServises : ICarService
     {
         CarRepository carRepository = new CarRepository(new CarStorageContext());
-
 
         #region DeleteCar
         public void DeleteCar(int carId)

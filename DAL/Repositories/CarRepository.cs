@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CarStorage.DAL.Repositories
 {
-    public class CarRepository: Repository<Car>,ICarRepository
+    public class CarRepository : Repository<Car>, ICarRepository
     {
         public CarRepository(CarStorageContext context) : base(context)
         {
@@ -20,11 +20,16 @@ namespace CarStorage.DAL.Repositories
         }
         public IQueryable<Car> GetById(int id)
         {
-            return _entities.Where(x=>x.Id==id);
+            return _entities.Where(x => x.Id == id);
         }
-        public IQueryable<Car> GetByNameAndYear(string name,DateTime year)
+        public IQueryable<Car> GetByNameAndYear(string name, DateTime year)
         {
-            return _entities.Where(x => x.CarModel == name && x.Year==year);              
+            return _entities.Where(x => x.CarModel == name && x.Year == year);
+        }
+
+        public IEnumerable<Car> GetAllCar()
+        {
+            return _entities;
         }
     }
 }
