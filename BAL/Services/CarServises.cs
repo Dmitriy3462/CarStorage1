@@ -108,7 +108,6 @@ namespace CarStorage.BAL.Services
             catch (CarExceptoin ex)
             {
                 throw new CarExceptoin("Error occurred while finding the car: ");
-                return null;
             }
         }
         #endregion

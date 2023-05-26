@@ -106,7 +106,6 @@ namespace CarStorage.BAL.Services
             catch (ProductException ex)
             {
                 throw new ProductException("Error occurred while finding the product: ");
-                return null; //????????????
             }
         }
         #endregion

@@ -20,12 +20,12 @@ namespace CarStorage.BAL.Services
         {
             try
             {
-                var user = repository.GetById(userId).FirstOrDefault();  
+                var user = userRepository.GetById(userId).FirstOrDefault();  
                 if (user == null)
                     throw new UserException("User is not found");
 
-                repository.Delete(user);
-                repository.Save();
+                userRepository.Delete(user);
+                userRepository.Save();
                 Console.WriteLine("User has been successfully deleted.");
             }
             catch (UserException ex)
@@ -109,7 +109,7 @@ namespace CarStorage.BAL.Services
            
         }
         #endregion
-        public IEnumerable<User> GetAllCars()
+        public IEnumerable<User> GetAllUsers()
         {
             var response = userRepository.GetAll(); 
             return response;

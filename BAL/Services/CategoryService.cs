@@ -105,7 +105,6 @@ namespace CarStorage.BAL.Services
             catch (CategoryException ex)
             {
                 throw new CategoryException("Error occurred while finding the car: ");
-                return null;
             }
         }
         #endregion
