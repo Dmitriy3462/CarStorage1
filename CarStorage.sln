@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarStorage", "CarStorage.csproj", "{F9A78ADB-A185-404E-870A-A4FFA6729DA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarStorageWebAPI", "..\CarStorageWebAPI\CarStorageWebAPI.csproj", "{106AE9CF-F659-4075-A6AC-680C529FF410}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarStorageWebAPI", "CarStorageWebAPI\CarStorageWebAPI.csproj", "{106AE9CF-F659-4075-A6AC-680C529FF410}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
