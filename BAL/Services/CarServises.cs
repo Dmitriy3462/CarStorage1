@@ -117,6 +117,10 @@ namespace CarStorage.BAL.Services
             return response;    
         }
 
+        public Car GetCarName(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

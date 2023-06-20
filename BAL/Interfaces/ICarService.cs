@@ -13,6 +13,7 @@ namespace CarStorage.BAL.Interfaces
         public void UpdateCar(Car car);
         public void NewCar(Car car);
         public Car FindCar(int carId);
+        public Car GetCarName (string name);
         public IEnumerable<Car> GetAllCars();
     }
 }
